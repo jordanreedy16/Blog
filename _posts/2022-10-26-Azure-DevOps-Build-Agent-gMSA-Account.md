@@ -4,6 +4,8 @@ category:
 - DevOps
 - Sysadmin
 title: Use a Group Managed Service Account for Azure DevOps VSTS Agents
+comments: true
+summary: Set up Group Managed Service Accounts with Azure DevOps Self-Host Build Agents
 ---
 
 # Azure DevOps and gMSAs
