@@ -94,7 +94,7 @@ Get-ADServiceAccount -Identity SVCExampleAcc -Properties PrincipalsAllowedToRetr
 
 
 ``` CMD
-psexec.exe -u fdc\svcaccname cmd.exe
+psexec.exe -u domain\svcaccname cmd.exe
 ```
 
 
