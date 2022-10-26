@@ -46,7 +46,7 @@ plugins:
   - jekyll-seo-tag
 
 destination: /var/www/cyberdelic.dev/html
-paginate: 4 
+paginate: 2
 google_analytics: G-2SGQ1ZMYME
 disqus:
         shortname: reedy-dev
