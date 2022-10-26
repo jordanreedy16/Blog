@@ -25,31 +25,31 @@ This post will take you through setting up a gMSA account first, then show you h
 ### Get Personal Access Token (PAT)
 
 
-1. Go to your Azure DevOps Instance > Select your profile from upper right corner > Choose Security
+* Go to your Azure DevOps Instance > Select your profile from upper right corner > Choose Security
 
 ![Security](\assets\2022-10-26\Security-Setting.png)
 
 
-2. Select New Token > Fill out information in column (We're choosing full access for now)
+* Select New Token > Fill out information in column (We're choosing full access for now)
 
 
 ![Generate Token](\assets\2022-10-26\Generate-Token.png)
 
 
-3. Copy the token to somewhere safe, you'll never see it again. If you lose it you'll have to create a new token.
+* Copy the token to somewhere safe, you'll never see it again. If you lose it you'll have to create a new token.
 
 ### Download and configure agent
 
-1. Go to Collection Settings > Agent Pools > New Pool or Add to Existing (based on goal)
+* Go to Collection Settings > Agent Pools > New Pool or Add to Existing (based on goal)
 
 
-2. Click the pool to open, then choose New Agent
+* Click the pool to open, then choose New Agent
 
 
 ![New Agent](\assets\2022-10-26\New-Agent.png)
 
 
-3. Follow the instructions that pop up on the desired server or PC. We are doing the default install for now.
+* Follow the instructions that pop up on the desired server or PC. We are doing the default install for now.
 	- URL: https://ems-azdevops.emscorporate.com/DefaultCollection/
     - You'll need to specify the collection if not in the default
     - Specify Pool Name: In this case, "Example Pool"
@@ -57,14 +57,14 @@ This post will take you through setting up a gMSA account first, then show you h
     - Most defaults are fine.
 
 
-4. Choose to run it as a service. Also just run as NT authority right now
+* Choose to run it as a service. Also just run as NT authority right now
 
 ![Default Install](\assets\2022-10-26\Default-Install.png)
 ![Example](\assets\2022-10-26\Example.png)
 
 
 
-5. All done. Agent is configured
+* All done. Agent is configured
 
 ### Set up gMSA for use with Azure DevOps agent service
 
@@ -73,7 +73,7 @@ By default during installation, it is registered with the NT Network Service
 ![Default Service Log On](\assets\2022-10-26\Default-Service-Logon.png)
 
 
-1. All of this will be done with Powershell. You must have DA or similar
+* All of this will be done with Powershell. You must have DA or similar
 	- You're going to want to get the DN for the computer you are associating this account with.
     - Replace my domain information with your own. If you copy and paste this code it will not work.
     - Be sure to select the distinguishedName (DN) from Active Directory for this. More info can be found at the link below:
@@ -90,7 +90,7 @@ Get-ADServiceAccount -Identity SVCExampleAcc -Properties PrincipalsAllowedToRetr
 
 ```
 
-2. If you need to run a command prompt to try things as your service account, use psexec.exe from windows internals.
+* If you need to run a command prompt to try things as your service account, use psexec.exe from windows internals.
 
 
 ``` CMD
@@ -98,7 +98,7 @@ psexec.exe -u fdc\svcaccname cmd.exe
 ```
 
 
-3. When it prompts for password, just leave it blank. Once in, type ``` Whoami ``` to confirm identity.
+* When it prompts for password, just leave it blank. Once in, type ``` Whoami ``` to confirm identity.
 
 
 Below is us logging into a command session as the service account created earlier in this guide
@@ -110,16 +110,16 @@ Below is an example of the operation on a PC that doesn't have the retrieve pass
 ![Failed login](\assets\2022-10-26\Failed-Login.png)
 
 
-4. To change the Azure Pipleline account, add the account you created to the service
+* To change the Azure Pipleline account, add the account you created to the service
 
 
 ![gMSA Service](\assets\2022-10-26\gMSA-Service.png)
 
 
-5. Leave the password field empty and click apply.
+* Leave the password field empty and click apply.
 
 
 ![Completed](\assets\2022-10-26\Completed.png)
 
 
-6. Restart the service and it should function.
+* Restart the service and it should function.
